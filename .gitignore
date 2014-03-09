@@ -1,0 +1,17 @@
+# Specific Files
+.Rproj.user
+.Rhistory
+.RData
+
+# Example code in package build process
+*-Ex.R
+
+# General Files
+*.csv
+
+# Folders
+data_comparis/
+data_output/
+data_profile/
+plots/
+tmp/

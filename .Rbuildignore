@@ -1,0 +1,9 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+.Rprofile
+\.gitignore$
+basleR.Rproj
+\.RData$
+\.Rhistory$
+NEWS.md
+main.r
