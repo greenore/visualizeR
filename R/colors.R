@@ -50,21 +50,22 @@ colFun <- function(rang, id, category, data, rank_col = T, top = c(1), flop = c(
 		# Red color for flop profiles
 		num <- aggregate(df[, category], list(df[, id]), FUN = 'length')
 		
-		n4 <- ifelse(num$x == (length(levels(df[, category])) - 3), as.character(num$Group.1), NA)
-		n5 <- ifelse(num$x == (length(levels(df[, category])) - 2), as.character(num$Group.1), NA)
-		n6 <- ifelse(num$x == (length(levels(df[, category])) - 1), as.character(num$Group.1), NA)
-		n7 <- ifelse(num$x == (length(levels(df[, category]))), as.character(num$Group.1), NA)
+		n4 <- ifelse(num$x == (length(unique(df[, category])) - 3), as.character(num$Group.1), NA)
+		n5 <- ifelse(num$x == (length(unique(df[, category])) - 2), as.character(num$Group.1), NA)
+		n6 <- ifelse(num$x == (length(unique(df[, category])) - 1), as.character(num$Group.1), NA)
+		n7 <- ifelse(num$x == (length(unique(df[, category]))), as.character(num$Group.1), NA)
 		
-		n41 <- sort((length(levels(df[, category])) - 3) - (flop - 1))
-		n51 <- sort((length(levels(df[, category])) - 2) - (flop - 1))
-		n61 <- sort((length(levels(df[, category])) - 1) - (flop - 1))
-		n71 <- sort((length(levels(df[, category])) ) - (flop - 1))
+		n41 <- sort((length(unique(df[, category])) - 3) - (flop - 1))
+		n51 <- sort((length(unique(df[, category])) - 2) - (flop - 1))
+		n61 <- sort((length(unique(df[, category])) - 1) - (flop - 1))
+		n71 <- sort((length(unique(df[, category])) ) - (flop - 1))
 		
 		df[, 'Color'] <- ifelse(df[, id] %in% n4 & df[, rang] %in% n41, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, 'Color'])
 		df[, 'Color'] <- ifelse(df[, id] %in% n5 & df[, rang] %in% n51, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, 'Color'])
 		df[, 'Color'] <- ifelse(df[, id] %in% n6 & df[, rang] %in% n61, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, 'Color'])
 		df[, 'Color'] <- ifelse(df[, id] %in% n7 & df[, rang] %in% n71, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, 'Color'])  
 	}
+  
 	return(df)
 }
 
