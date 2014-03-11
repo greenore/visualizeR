@@ -284,7 +284,7 @@ rankPlot <- function(rang, id, category, df, orderFun = 'Median', range = c(0, m
     
     # Percent
     text(x = barp, y = d$Prozent + 5 * range[2]/100,
-         label = format(d$Prozent, digits = 1, nsmall = 1), cex = cex)
+         label = round(d$Prozent, 1), cex = cex)
     
     # Legend
     if(leg == T){
