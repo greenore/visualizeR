@@ -272,7 +272,7 @@ rankPlot <- function(rang, id, category, df, orderFun = 'Median', range = c(0, m
     # Format number
     a <- round(sum(d$Prozent[1:3]), digits = 1)
     a <- formatC(a, 1, format = "f")
-    d$Prozent <- round(d$Prozent), digits = 1)
+    d$Prozent <- round(d$Prozent, digits = 1)
 
     # Percent
     text(x = barp, y = d$Prozent + 5 * range[2]/100,
