@@ -264,12 +264,6 @@ rankPlot <- function(rang, id, category, df, orderFun = 'Median', range = c(0, m
       d <- rbind(tmp, d)
     }
     
-    #     if (prod(!levels(d$Rang) %in% 'Rang 9') == 1){
-    #       tmp <- d[1, ]
-    #       tmp$Rang <- 'Rang 9'; tmp$Prozent <- 0
-    #       d <- rbind(d, tmp)
-    #     }
-    
     d <- d[order(d$Rang, decreasing = F), ]
     barp <- barplot(d$Prozent, ylim = range, names.arg = d$Rang, axes = F,
                     col = d$Col, ylab = '', main = d$VersName[1], las = 1,
@@ -277,14 +271,12 @@ rankPlot <- function(rang, id, category, df, orderFun = 'Median', range = c(0, m
     
     # Format number
     a <- round(sum(d$Prozent[1:3]), digits = 1)
-    a <- ifelse(nchar(a) == 1, paste('  ', a, '.0', sep = ''), a)
-    a <- ifelse(nchar(a) == 2, paste(a, '.0', sep = ''), a)
-    a <- ifelse(nchar(a) == 3, paste('  ', a, sep = ''), a)
-    a <- ifelse(nchar(a) == 4, as.character(a), a)
-    
+    a <- formatC(a, 1, format = "f")
+    d$Prozent <- round(d$Prozent), digits = 1)
+
     # Percent
     text(x = barp, y = d$Prozent + 5 * range[2]/100,
-         label = format(d$Prozent, digits = 1, nsmall = 1), cex = cex)
+         label = formatC(d$Prozent, 1, format = "f"), cex = cex)
     
     # Legend
     if(leg == T){
