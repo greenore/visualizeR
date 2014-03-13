@@ -1,6 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-.Rprofile
 \.gitignore$
 basleR.Rproj
 \.RData$

@@ -285,7 +285,7 @@ rankPlot <- function(rang, id, category, df, orderFun = 'Median', range = c(0, m
     	
     temp <- legend('topright', legend = c(' ', ' '), xjust = 1, yjust = 1,
                    text.width = strwidth(paste('Durch.Rang =  ', format(mean_rang[mean_rang[, category] == i, rang], digits = 1, nsmall = 1))),
-                   box.col = 'white', bg = 'white', cex = cex, bty = 'o')
+                   box.col = 'transparent', bg = 'transparent', cex = cex, bty = 'o')
     text(temp$rect$left + temp$rect$w, temp$text$y, pos = 2,
          c(paste('Top 3 (%) = ', a, sep = ''),
            paste('Durch.Rang =  ', format(mean_rang[mean_rang[, category] == i, rang], digits = 1, nsmall = 1))),
