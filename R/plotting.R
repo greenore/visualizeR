@@ -130,7 +130,9 @@ barPlot <- function(data){
 # BeePlot
 #--------
 beePlot <- function(id, category, praemie, rank, data, range = c(0, max),
-										conf = T, median = T, mean = F, label = T, bee_plot = T){
+										conf = T, median = T, mean = F, label = T, bee_plot = T,
+                    cex = 6, cex.axis = 1.8, cex.lab = 1.4, cex.med = 2.2, 
+                    cex.minmax = 1.3, lwd.med = 3){
 
 	require(beeplot)
 	
@@ -157,7 +159,7 @@ beePlot <- function(id, category, praemie, rank, data, range = c(0, max),
   
   if (bee_plot == F){
     boxplot(eval(parse(text = textFun(praemie, category))), data = df, border = F,
-            cex = 6, las = 1, cex.axis = 1.8, ylim = range)
+            cex = cex, las = 1, cex.axis = cex.axis, ylim = range)
   }
  
 	# Beeplot
@@ -166,26 +168,26 @@ beePlot <- function(id, category, praemie, rank, data, range = c(0, max),
     set.seed(123)
     bee <- beeswarm(eval(parse(text = textFun(praemie, category))), data = df, 
                     vertical = T, method = 'center',  corral = "random",
-                    spacing = 0.7, cex = 6,
+                    spacing = 0.7, cex = cex,
                     pwcol = df[, 'Color'], pch = 18,
                     xlab = '', ylab = '', main = '',
-                    ylim = range, las = 1, cex.axis = 1.8,
+                    ylim = range, las = 1, cex.axis = cex.axis,
                     pwbg = as.character(df[, id]))
     
     # Label: Numbers
     if (label == T){
-      text(bee, labels = bee$bg, cex = 1.4, col = 'white', font = 2)
+      text(bee, labels = bee$bg, cex = cex.lab, col = 'white', font = 2)
     }
 
     # Line: Median
     if (median == T){
       boxplot(eval(parse(text = textFun('Median', category))), add = T, data = aggPrime,
-      				xlab = "", ylab = "", axes = F, border = 'black', boxwex = .8, lwd = 3, ylim = range)
+      				xlab = "", ylab = "", axes = F, border = 'black', boxwex = .8, lwd = lwd.med, ylim = range)
     }
 
     if (mean == T){
     	boxplot(eval(parse(text = textFun('Mean', category))), add = T, data = aggPrime,
-    					xlab = "", ylab = "", axes = F, border = balCol('rot'), boxwex = .8, lwd = 3, ylim = range)
+    					xlab = "", ylab = "", axes = F, border = balCol('rot'), boxwex = .8, lwd = lwd.med, ylim = range)
     }
     
     # Label: Median
@@ -193,7 +195,7 @@ beePlot <- function(id, category, praemie, rank, data, range = c(0, max),
     	lab <- paste('Median', ' = ', sep = '')
     	text(rep(0.5 * range[2]/100, length(levels(df[, category]))),
            labels = paste(lab, round(aggPrime$Median, 0), '.-', sep = ''),
-           cex = 2.2, col = 'black', font = 2)
+           cex = cex.med, col = 'black', font = 2)
     }
     
     # Conf Intervall
@@ -208,7 +210,7 @@ beePlot <- function(id, category, praemie, rank, data, range = c(0, max),
       text(rep(-2.5 * range[2]/100, length(levels(df[, category]))),
            labels = paste('95% CI: [', round(box$conf[1, ], 0), '.- ; ',
                           round(box$conf[2, ], 0), '.-]', sep = ''),
-           cex = 1.3, col = 'black', font = 2)
+           cex = cex.minmax, col = 'black', font = 2)
     } 
     
     # Label: Min Max
@@ -216,7 +218,7 @@ beePlot <- function(id, category, praemie, rank, data, range = c(0, max),
       text(rep(-2.5 * range[2]/100, length(levels(df[, category]))),
            labels = paste('(Min = ', round(aggPrime$Min, 0), '.-',
                           '  Max = ', round(aggPrime$Max, 0), '.-)', sep = ''),
-           cex = 1.3, col = 'black', font = 2)
+           cex = cex.minmax, col = 'black', font = 2)
     } 
   }
 }
@@ -265,9 +267,12 @@ rankPlot <- function(rang, id, category, df, orderFun = 'Median', range = c(0, m
     }
     
     d <- d[order(d$Rang, decreasing = F), ]
+    
+    # Barplot
     barp <- barplot(d$Prozent, ylim = range, names.arg = d$Rang, axes = F,
-                    col = d$Col, ylab = '', main = d$VersName[1], las = 1,
-                    cex.axis = cex, cex.names = cex * 0.7, cex.lab = cex, cex.main = cex, border = F)
+                    col = d$Col, ylab = '', main = '', las = 3,
+                    cex.axis = cex * 1.4, cex.names = cex * 1, cex.lab = cex,
+                    border = F)
     
     # Format number
     a <- round(sum(d$Prozent[1:3]), digits = 1)
@@ -280,16 +285,21 @@ rankPlot <- function(rang, id, category, df, orderFun = 'Median', range = c(0, m
     text(x = barp, y = d$Prozent + 5 * range[2]/100,
          label = formatC(d$Prozent, digits = 1, format = "f"), cex = cex)
     
+    # Title
+#     legend('top', legend = d$VersName[1], box.col = 'transparent',
+#            bg = 'transparent', cex = cex * 2, bty = 'o')
+    
+      title(main = d$VersName[1], cex = cex * 2)
     # Legend
     if(leg == T){
-    	
-    temp <- legend('topright', legend = c(' ', ' '), xjust = 1, yjust = 1,
-                   text.width = strwidth(paste('Durch.Rang =  ', format(mean_rang[mean_rang[, category] == i, rang], digits = 1, nsmall = 1))),
-                   box.col = 'transparent', bg = 'transparent', cex = cex, bty = 'o')
-    text(temp$rect$left + temp$rect$w, temp$text$y, pos = 2,
-         c(paste('Top 3 (%) = ', a, sep = ''),
-           paste('Durch.Rang =  ', format(mean_rang[mean_rang[, category] == i, rang], digits = 1, nsmall = 1))),
-         cex = cex, col = balCol('rot'))  
+      temp <- legend('topright', legend = c(' ', ' '), xjust = 1, yjust = 1,
+                     text.width = strwidth(paste('Durch.Rang =  ',
+                        format(mean_rang[mean_rang[, category] == i, rang], digits = 1, nsmall = 1))),
+                     box.col = 'transparent', bg = 'transparent', cex = cex, bty = 'o')
+      text(temp$rect$left + temp$rect$w, temp$text$y, pos = 2,
+           c(paste('Top 3 (%) = ', a, sep = ''),
+             paste('Durch.Rang =  ', format(mean_rang[mean_rang[, category] == i, rang], digits = 1, nsmall = 1))),
+             cex = cex, col = balCol('rot'))  
     }
   }
 }
