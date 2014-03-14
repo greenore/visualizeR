@@ -129,7 +129,7 @@ barPlot <- function(data){
 
 # BeePlot
 #--------
-beePlot <- function(id, category, praemie, rank, data, range = c(0, max),
+beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
 										conf = T, median = T, mean = F, label = T, bee_plot = T,
                     cex = 6, cex.axis = 1.8, cex.lab = 1.4, cex.med = 2.2, 
                     cex.minmax = 1.3, lwd.med = 3){
@@ -169,7 +169,7 @@ beePlot <- function(id, category, praemie, rank, data, range = c(0, max),
     bee <- beeswarm(eval(parse(text = textFun(praemie, category))), data = df, 
                     vertical = T, method = 'center',  corral = "random",
                     spacing = 0.7, cex = cex,
-                    pwcol = df[, 'Color'], pch = 18,
+                    pwcol = df[, color], pch = 18,
                     xlab = '', ylab = '', main = '',
                     ylim = range, las = 1, cex.axis = cex.axis,
                     pwbg = as.character(df[, id]))
