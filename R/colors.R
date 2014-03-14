@@ -66,6 +66,6 @@ colFun <- function(rang, id, category, data, rank_col = T, top = c(1), flop = c(
 		df[, 'Color'] <- ifelse(df[, id] %in% n7 & df[, rang] %in% n71, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, 'Color'])  
 	}
   
-	return(df)
+	df$Color
 }
 
