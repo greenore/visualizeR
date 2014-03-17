@@ -23,6 +23,12 @@ plotHist <- function(var, medianLine = T, col_bars = '#999999', col_median = 'pu
 #---------
 linePlot <- function(df, varYear, varValue, varCat, type = 'b', col = 'black', ...){
 	
+  # Transformation
+  df[, varCat] <- as.character(df[, varCat])
+  df[, varYear] <- as.numeric(df[, varYear])
+  df[, varValue] <- as.numeric(df[, varValue])
+  
+  # First Line
 	i <- 1
 	x <- df[, varYear][df[, varCat] ==	unique(df[, varCat])[i]]
 	y <- df[, varValue][df[, varCat] ==	unique(df[, varCat])[i]]
@@ -33,6 +39,7 @@ linePlot <- function(df, varYear, varValue, varCat, type = 'b', col = 'black', .
 	text(max(df[, varYear]) + .5, y[length(y)], label = unique(df[, varCat])[i],
 			 col = color)
 	
+  # Other Lines
 	for(i in 2:length(unique(df[, varCat]))){
 		x <- df[, varYear][df[, varCat] ==	unique(df[, varCat])[i]]
 		y <- df[, varValue][df[, varCat] ==	unique(df[, varCat])[i]]
