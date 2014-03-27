@@ -11,7 +11,7 @@ changeLevels <- function(data, var, old_level, new_level){
 
 # TRANSFORMATION from FACTORS to NUMERIC variables
 factToNum <- function(data, var){
-  as.numeric(levels(data[, var])[data[, var]])
+  as.numeric(as.character(data[, var]))
 }
 
 # TRANSFORMATION from FACTORS to DATE variables

@@ -21,11 +21,16 @@ plotHist <- function(var, medianLine = T, col_bars = '#999999', col_median = 'pu
 
 # Lineplot
 #---------
-linePlot <- function(df, varYear, varValue, varCat, type = 'b', col = 'black', ...){
+linePlot <- function(df, varYear, varValue, varCat, type = 'b', col = 'black',
+                     ylim = c(min(df[, varValue]), max(df[, varValue])), ...){
 	
   # Transformation
   df[, varCat] <- as.character(df[, varCat])
-  df[, varYear] <- as.numeric(df[, varYear])
+  
+  if(is.factor(df[, varYear])){
+    df[, varYear] <- factToNum(data = df, var = varYear)
+  }
+  
   df[, varValue] <- as.numeric(df[, varValue])
   
   # First Line
@@ -34,7 +39,7 @@ linePlot <- function(df, varYear, varValue, varCat, type = 'b', col = 'black', .
 	y <- df[, varValue][df[, varCat] ==	unique(df[, varCat])[i]]
 	color <- ifelse(col == 'black', 'black', df[, col][df[, varCat] ==	unique(df[, varCat])[i]])	
 	
-	plot(x, y, type = type, ylim = c(0, max(df[, varValue])), xlim = c(min(df[, varYear]), max(df[, varYear]) + 1),
+	plot(x, y, type = type, ylim = ylim, xlim = c(min(df[, varYear]), max(df[, varYear]) + 1),
 			 las = 1, ylab = '', xlab = '', col = color, ...)
 	text(max(df[, varYear]) + .5, y[length(y)], label = unique(df[, varCat])[i],
 			 col = color)
@@ -45,11 +50,11 @@ linePlot <- function(df, varYear, varValue, varCat, type = 'b', col = 'black', .
 		y <- df[, varValue][df[, varCat] ==	unique(df[, varCat])[i]]
   	color <- ifelse(col == 'black', 'black', df[, col][df[, varCat] ==	unique(df[, varCat])[i]])	
 		
-		lines(x, y, type = type, ylim = c(0, max(df[, varValue])), xlim = c(min(df[, varYear]), max(df[, varYear]) + 1),
+		lines(x, y, type = type, ylim = ylim, xlim = c(min(df[, varYear]), max(df[, varYear]) + 1),
 					las = 1, ylab = '', xlab = '', col = color, ...)
 		text(max(df[, varYear]) + .5, y[length(y)], label = unique(df[, varCat])[i],
 				 col = color)
-	}	
+	}
 }
 
 
@@ -139,17 +144,19 @@ barPlot <- function(data){
 beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
 										conf = T, median = T, mean = F, label = T, bee_plot = T,
                     cex = 6, cex.axis = 1.8, cex.lab = 1.4, cex.med = 2.2, 
-                    cex.minmax = 1.3, lwd.med = 3){
+                    cex.minmax = 1.3, lwd.med = 3, las = 1){
 
 	require(beeplot)
 	
 	# Ceiling
-  df <- data[!is.na(data[, praemie]), ]
+	data[, praemie] <- as.numeric(data[, praemie])
+	df <- data[!is.na(data[, praemie]), ]
+	
   max <- ceiling(max(df[, praemie])/100)*100
   
 	# Aggregation
-	aggPrime <- aggFun(praemie = praemie, category = category, data = data)
-	aggRank <- aggFun(praemie = rank, category = category, data = data)
+	aggPrime <- aggFun(praemie = praemie, category = category, data = df)
+	aggRank <- aggFun(praemie = rank, category = category, data = df)
 	names(aggRank)[names(aggRank) == 'Mean'] <- 'averageMean'
 	
 	# Merge
@@ -166,7 +173,7 @@ beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
   
   if (bee_plot == F){
     boxplot(eval(parse(text = textFun(praemie, category))), data = df, border = F,
-            cex = cex, las = 1, cex.axis = cex.axis, ylim = range)
+            cex = cex, las = las, cex.axis = cex.axis, ylim = range)
   }
  
 	# Beeplot
@@ -178,7 +185,7 @@ beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
                     spacing = 0.7, cex = cex,
                     pwcol = df[, color], pch = 18,
                     xlab = '', ylab = '', main = '',
-                    ylim = range, las = 1, cex.axis = cex.axis,
+                    ylim = range, las = las, cex.axis = cex.axis,
                     pwbg = as.character(df[, id]))
     
     # Label: Numbers
