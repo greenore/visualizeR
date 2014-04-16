@@ -1,0 +1,14 @@
+\name{rotationFun}
+\alias{rotationFun}
+\title{Rotate a letter}
+\usage{
+rotationFun(letter)
+}
+\arguments{
+  \item{letter}{}
+}
+\description{
+\code{rotationFun} rotates a letter according to it's width, i.e.,
+it minimizes or maximizes it (for the letters M & W).
+}
+
