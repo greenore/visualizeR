@@ -9,7 +9,7 @@ Description: A consistent tool to facilitate pricing analysis at Baloise.
     This includes functions to handle data, system commands, webscraping,
     visualisations etc.
 Depends:
-    R (>= 3.0.2)
+    R (>= 3.0.3)
 Imports:
     utils,
     methods,

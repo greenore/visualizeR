@@ -41,7 +41,7 @@ img2Black <- function(img){
 #' @export
 #' 
 #' @description \code{isWhite} is looking for the parts in an image that are  
-#' white (rgb = 255) and returns a logical (T or F) vecotr.
+#' white (rgb = 255) and returns a logical vector (T or F).
 #'  
 #' @param img A matrix of imagedata resulting from a readJpeg import.
 #' @param axes Either 'v' or 'h', is the image scaned trough vertically or 
@@ -72,7 +72,14 @@ isWhite <- function(img, axes = 'v'){
   dfWhite > 0
 }
 
-# Cut-off whitespace (with 1px white)
+#' @title Cut-off whitespace (with 1px left)
+#' @export
+#' 
+#' @description \code{cutWhite} 
+#'  
+#' @param letter
+#' 
+
 cutWhite <- function(letter){
   require(biOps)
   
@@ -100,7 +107,15 @@ cutWhite <- function(letter){
   imagedata(letter)
 }
 
-# Seperate letters (with the help of the above function)
+#' @title Seperate letters
+#' @export
+#' 
+#' @description \code{sepLetter} 
+#'  
+#' @param img
+#' @param nLetter
+#' 
+
 sepLetter <- function(img, nLetter){
   
   width <- length(img[1, ])
@@ -119,13 +134,31 @@ sepLetter <- function(img, nLetter){
   imagedata(cutWhite(letter))
 }  
 
-# Creat a Canvas
+#' @title Creat a Canvas
+#' @export
+#' 
+#' @description \code{makeCanvas} 
+#'  
+#' @param nrows
+#' @param ncols
+#' 
+
 makeCanvas <- function(nrows, ncols){
   canvas <- imagedata(matrix(data = rep(255, nrows * ncols), nrow = nrows, ncol = ncols))
   canvas
 }
 
-# Rotate a letter
+#' @title Rotate a letter
+#' @export
+#' 
+#' @description \code{rotLetter} 
+#'  
+#' @param letter
+#' @param cSize
+#' @param angle
+#' @param cutoff
+#' 
+
 rotLetter <- function(letter, cSize, angle, cutoff = 1/5){
   require(biOps)
   require(EBImage)
@@ -162,15 +195,28 @@ rotLetter <- function(letter, cSize, angle, cutoff = 1/5){
   imagedata(rCanvas)  
 }
 
+#' @title Sharpen an image to max
+#' @export
+#' 
+#' @description \code{sharpenImage} 
+#'  
+#' @param img
+#' 
 
-# Sharpen an image to max
 sharpenImage <- function(img){
   img[img > 255/2] <- 255
   img[img < 255/2] <- 0
   img
 }
 
-# Is a letter a M or W
+#' @title Is a letter a M or W
+#' @export
+#' 
+#' @description \code{isMW} 
+#'  
+#' @param letter
+#' 
+
 isMW <- function(letter){
   require(biOps)
   
@@ -204,7 +250,15 @@ isMW <- function(letter){
   sum(x, na.rm = T) > 0
 }
 
-# Rotate Letter according to the width/height ration --> minimze or maximize
+#' @title Rotate a letter
+#' @export
+#' 
+#' @description \code{rotationFun} rotates a letter according to it's width, i.e.,
+#' it minimizes or maximizes it (for the letters M & W). 
+#' 
+#' @param letter
+#' 
+
 rotationFun <- function(letter){
   require(biOps)
   
@@ -244,7 +298,17 @@ rotationFun <- function(letter){
   letter_temp
 }
 
-# Plot Letter on a canvas
+#' @title Plot Letter on a canvas
+#' @export
+#' 
+#' @description \code{plotLetters} 
+#'  
+#' @param letter
+#' @param canvas
+#' @param number
+#' @param widthLetter
+#' 
+
 plotLetters <- function(letter, canvas, number, widthLetter = 30){
   
   # Max. width and max. height of the letter
@@ -265,7 +329,14 @@ plotLetters <- function(letter, canvas, number, widthLetter = 30){
   imagedata(canvas)
 }
 
-# Rotate Letter randomly
+#' @title Rotate Letter randomly
+#' @export
+#' 
+#' @description \code{rotateAndCombine} 
+#'  
+#' @param letter
+#' 
+
 rotateAndCombine <- function(letter){
   require(biOps)
   
@@ -284,7 +355,14 @@ rotateAndCombine <- function(letter){
   canvas
 }
 
-# OCR by tesseract
+#' @title OCR with tesseract
+#' @export
+#' 
+#' @description \code{ocrTesseract} 
+#'  
+#' @param canvas
+#' 
+
 ocrTesseract <- function(canvas){
   # Write canvas to tiff
   writeTiff('prog_captcha/canvas.tiff', canvas)
