@@ -19,7 +19,14 @@ factToDate <- function(data, var){
   as.Date(levels(data[, var])[data[, var]])
 }
 
-# ASSIGN NA for BLANK VALUES ("") For Factors
+#' @title Assign NA for blank values ("") for Factors
+#' @export
+#' 
+#' @description \code{blankToMissing} 
+#'  
+#' @param data
+#' 
+
 blankToMissing <- function(data){
   
   for (i in names(data)){
