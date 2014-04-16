@@ -19,6 +19,7 @@ Suggests:
     maptools,
     RColorBrewer,
     classInt,
-    devEMF
+    devEMF,
+    biOps
 Roxygen: list(wrap = FALSE)
 License: MIT + file LICENSE
