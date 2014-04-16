@@ -14,7 +14,6 @@ captcha into a black & white image. The values are (rgb = 0) for black and
 (rbg = 255) for white.
 }
 \examples{
-captcha <- readJpeg('prog_captcha/captcha1.jpg')
 captcha <- img2Black(captcha)
 }
 

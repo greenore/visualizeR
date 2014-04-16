@@ -13,13 +13,14 @@ Depends:
 Imports:
     utils,
     methods,
+    biOps,
+    EBImage
 Suggests:
     plotrix,
     beeswarm,
     maptools,
     RColorBrewer,
     classInt,
-    devEMF,
-    biOps
+    devEMF
 Roxygen: list(wrap = FALSE)
 License: MIT + file LICENSE
