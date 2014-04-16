@@ -20,6 +20,7 @@ Suggests:
     RColorBrewer,
     classInt,
     devEMF,
-    biOps
+    biOps,
+    EBImage
 Roxygen: list(wrap = FALSE)
 License: MIT + file LICENSE

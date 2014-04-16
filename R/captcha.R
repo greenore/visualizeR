@@ -11,7 +11,6 @@
 #' @param img A matrix of imagedata resulting from a readJpeg import.
 #' 
 #' @examples
-#' captcha <- readJpeg('prog_captcha/captcha1.jpg')
 #' captcha <- img2Black(captcha)
 
 img2Black <- function(img){
