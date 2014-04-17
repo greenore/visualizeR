@@ -15,22 +15,16 @@
 changeUmlaute <- function(charVector){
   
   # Ae's
-  umlaut <- iconv('Ã„', 'utf-8')
-  charVector <- gsub(iconv(umlaut, 'utf-8'), 'Ae', charVector)
-  umlaut <- iconv('Ã¤', 'utf-8')
-  charVector <- gsub(iconv(umlaut, 'utf-8'), 'ae', charVector)
+  charVector <- gsub('\u00C4', 'Ae', charVector)
+  charVector <- gsub('\u00E4', 'ae', charVector)
   
   # Oe's
-  umlaut <- iconv('Ãœ', 'utf-8')
-  charVector <- gsub(iconv(umlaut, 'utf-8'), 'Oe', charVector)
-  umlaut <- iconv('Ã¼', 'utf-8')
-  charVector <- gsub(iconv(umlaut, 'utf-8'), 'oe', charVector)
-    
+  charVector <- gsub('\u00D6', 'Oe', charVector)
+  charVector <- gsub('\u00F6', 'oe', charVector)
+  
   # Ue's
-  umlaut <- iconv('Ã–', 'utf-8')
-  charVector <- gsub(iconv(umlaut, 'utf-8'), 'Ue', charVector)
-  umlaut <- iconv('Ã¶', 'utf-8')
-  charVector <- gsub(iconv(umlaut, 'utf-8'), 'ue', charVector)
+  charVector <- gsub('\u00DC', 'Ue', charVector)
+  charVector <- gsub('\u00FC', 'ue', charVector)
   
   charVector
 }
