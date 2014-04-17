@@ -65,7 +65,15 @@ blank2Missing <- function(data){
   return(data)
 }
 
-# TRANSFORM A LONG FUNCTION TEXT INTO A FUNCTION
+#' @title Transform a long function text into a formula
+#' @export
+#' 
+#' @description \code{textFun} 
+#'  
+#' @param yvar
+#' @param xvar
+#'
+
 textFun <- function(yvar, xvar){
   yvar <- paste(yvar, ' ~ ', sep = '')
   xvar <- paste(xvar, sep = '', collapse = ' + ')
@@ -73,8 +81,17 @@ textFun <- function(yvar, xvar){
   paste(fun)
 }
 
-# Rank
-#-----
+#' @title Calculate a rank
+#' @export
+#' 
+#' @description \code{rankFun} 
+#'  
+#' @param praemie
+#' @param id
+#' @param category
+#' @param data
+#'
+
 rankFun <- function(praemie, id, category, data){
 	
 	df <- data[!is.na(data[, praemie]), ]
@@ -89,8 +106,17 @@ rankFun <- function(praemie, id, category, data){
 	return(rank)
 }
 
-# Data Cleanup
-#-------------
+#' @title Data cleanup
+#' @export
+#' 
+#' @description \code{cleanFun} 
+#'  
+#' @param praemie
+#' @param id
+#' @param category
+#' @param data
+#'
+
 cleanFun <- function(praemie, id, category, data){
 	df <- data[complete.cases(data[, praemie]), ]
 	df[, category] <- as.factor(df[, category])
@@ -104,8 +130,17 @@ cleanFun <- function(praemie, id, category, data){
 	return(df)
 }
 
-# Aggregating
-#------------
+#' @title Aggregating
+#' @export
+#' 
+#' @description \code{aggFun} 
+#'  
+#' @param praemie
+#' @param category
+#' @param data
+#' @param decreasing
+#'
+
 aggFun <- function(praemie, category, data, decreasing = F){
 	df <- data[!is.na(data[, praemie]), ]
 	
@@ -133,9 +168,17 @@ aggFun <- function(praemie, category, data, decreasing = F){
 	agg
 }
 
-# Cuting Folder Files
-#--------------------
-# Import a file list from a folder and cut it into pieces
+#' @title Cuting folder files
+#' @export
+#' 
+#' @description \code{cutFiles} Import a file list from a folder and cut it into
+#' pieces
+#'  
+#' @param path
+#' @param cut_left
+#' @param cut_right
+#'
+
 cutFiles <- function(path, cut_left, cut_right){
 	files <- list.files(path, full.names = F)
 	
@@ -148,7 +191,16 @@ cutFiles <- function(path, cut_left, cut_right){
 	return(files)
 }
 
-# Return the newest File from a folder w the cutFiles function
+#' @title Return the newest file from a folder w the cutFiles function
+#' @export
+#' 
+#' @description \code{newestFile}
+#'  
+#' @param path
+#' @param cut_left
+#' @param cut_right
+#'
+
 newestFile <- function(path, cut_left, cut_right){
 	files <- cutFiles(path, cut_left, cut_right)
 	
