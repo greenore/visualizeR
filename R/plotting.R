@@ -139,8 +139,32 @@ barPlot <- function(data){
   }
 }
 
-# BeePlot
-#--------
+#' @title Create a beeswarm Plot
+#' @export
+#' 
+#' @description \code{beePlot}
+#'   
+#' @param id
+#' @param category
+#' @param praemie
+#' @param rank
+#' @param data
+#' @param color
+#' @param range
+#' @param conf
+#' @param median
+#' @param mean
+#' @param label
+#' @param bee_plot
+#' @param cex
+#' @param cex.axis
+#' @param cex.lab
+#' @param cex.med
+#' @param cex.minmax
+#' @param lwd.med
+#' @param las
+#'
+
 beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
 										conf = T, median = T, mean = F, label = T, bee_plot = T,
                     cex = 6, cex.axis = 1.8, cex.lab = 1.4, cex.med = 2.2, 
