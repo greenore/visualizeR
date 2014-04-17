@@ -29,8 +29,23 @@ balCol <- function(colour){
 	as.character(df.col[colour])
 }
 
-# Colors
-#--------
+#' @title Add Color to a dataframe
+#' @export
+#' 
+#' @description \code{colFun} Add a specific color according to the rank and the
+#' category, i.e., Basler are blue etc. 
+#'  
+#' @param rang
+#' @param id
+#' @param category
+#' @param rank_col
+#' @param top
+#' @param flop
+#' @param nam_blue
+#' @param nam_orange
+#' @param col_neutral
+#'
+
 colFun <- function(rang, id, category, data, rank_col = T, top = c(1), flop = c(1),
                    nam_blue = 'Basler', nam_orange = 'TCS',
                    col_neutral = rgb(0, 0, 0, alpha = 180, maxColorValue = 255)){
