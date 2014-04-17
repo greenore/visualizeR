@@ -1,0 +1,13 @@
+\name{blank2Missing}
+\alias{blank2Missing}
+\title{Assign NA for blank values ("") for factor variables}
+\usage{
+blank2Missing(data)
+}
+\arguments{
+  \item{data}{}
+}
+\description{
+\code{blank2Missing}
+}
+
