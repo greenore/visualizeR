@@ -1,7 +1,17 @@
 # Transformation Functions
 #-------------------------
 
-# TRANSFORMATION of FACTOR LEVELS
+#' @title Transformation of factor levels
+#' @export
+#' 
+#' @description \code{changeLevels} 
+#'  
+#' @param data
+#' @param var
+#' @param old_level
+#' @param new_level
+#' 
+
 changeLevels <- function(data, var, old_level, new_level){
   old <- old_level
   new <- new_level
@@ -9,25 +19,41 @@ changeLevels <- function(data, var, old_level, new_level){
   data[, var]
 }
 
-# TRANSFORMATION from FACTORS to NUMERIC variables
-factToNum <- function(data, var){
+#' @title Transformation from factors to numeric variables
+#' @export
+#' 
+#' @description \code{fact2Num} 
+#'  
+#' @param data
+#' @param var
+#' 
+
+fact2Num <- function(data, var){
   as.numeric(as.character(data[, var]))
 }
 
-# TRANSFORMATION from FACTORS to DATE variables
-factToDate <- function(data, var){
+#' @title Transformation from factors to date variables
+#' @export
+#' 
+#' @description \code{fact2Date} 
+#'  
+#' @param data
+#' @param var
+#' 
+
+fact2Date <- function(data, var){
   as.Date(levels(data[, var])[data[, var]])
 }
 
-#' @title Assign NA for blank values ("") for Factors
+#' @title Assign NA for blank values ("") for factor variables
 #' @export
 #' 
-#' @description \code{blankToMissing} 
+#' @description \code{blank2Missing} 
 #'  
 #' @param data
 #' 
 
-blankToMissing <- function(data){
+blank2Missing <- function(data){
   
   for (i in names(data)){
     if (class(data[, i]) == 'factor'){
