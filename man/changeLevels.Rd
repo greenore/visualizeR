@@ -5,15 +5,9 @@
 changeLevels(data, var, old_level, new_level)
 }
 \arguments{
-  \item{data}{}
-
-  \item{var}{}
-
-  \item{old_level}{}
-
-  \item{new_level}{}
+  \item{charVector}{}
 }
 \description{
-\code{changeLevels}
+\code{changeUmlaute}
 }
 
