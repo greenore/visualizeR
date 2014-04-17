@@ -22,5 +22,5 @@ vignette('basleR-basics')
 
 ### License
 
-The copyright of the basleR package belong mostly to me, as 90% of it is written
+The copyright of the basleR package belong mostly to me, as 95% of it is written
 on my own computer on my spear time. See the seperate LICENCE file for more information. 
