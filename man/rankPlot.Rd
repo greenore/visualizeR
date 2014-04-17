@@ -1,0 +1,30 @@
+\name{rankPlot}
+\alias{rankPlot}
+\title{Create a rank plot}
+\usage{
+rankPlot(rang, id, category, df, orderFun = "Median", range = c(0, max),
+  cex = 1.5, nam_blue = "Baloise", nam_orange = "TCS", leg = T)
+}
+\arguments{
+  \item{rang}{}
+
+  \item{id}{}
+
+  \item{category}{}
+
+  \item{df}{}
+
+  \item{orderFun}{}
+
+  \item{range}{}
+
+  \item{nam_blue}{}
+
+  \item{nam_orange}{}
+
+  \item{leg}{}
+}
+\description{
+\code{rankPlot}
+}
+
