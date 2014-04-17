@@ -1,7 +1,7 @@
 # Histogramm
 #-----------
 plotHist <- function(var, medianLine = T, col_bars = '#999999', col_median = 'purple',
-										 border = NA, lwd = 0.4, las = 1, ...){
+                     border = NA, lwd = 0.4, las = 1, ...){
 
 	# Histogram
 	h <- hist(var, col = col_bars, border = border, lwd = lwd, las = las, ...)
@@ -261,8 +261,22 @@ beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
   }
 }
 
-# Rank Plot
-#----------
+#' @title Create a rank plot
+#' @export
+#' 
+#' @description \code{rankPlot}
+#'   
+#' @param rang
+#' @param id
+#' @param category
+#' @param df
+#' @param orderFun
+#' @param range
+#' @param nam_blue
+#' @param nam_orange
+#' @param leg
+#'
+
 rankPlot <- function(rang, id, category, df, orderFun = 'Median', range = c(0, max), cex = 1.5,
 										 nam_blue = 'Baloise', nam_orange = 'TCS', leg = T){
   
