@@ -1,0 +1,17 @@
+\name{newestFile}
+\alias{newestFile}
+\title{Return the newest file from a folder w the cutFiles function}
+\usage{
+newestFile(path, cut_left, cut_right)
+}
+\arguments{
+  \item{path}{}
+
+  \item{cut_left}{}
+
+  \item{cut_right}{}
+}
+\description{
+\code{newestFile}
+}
+

@@ -1,0 +1,19 @@
+\name{aggFun}
+\alias{aggFun}
+\title{Aggregating}
+\usage{
+aggFun(praemie, category, data, decreasing = F)
+}
+\arguments{
+  \item{praemie}{}
+
+  \item{category}{}
+
+  \item{data}{}
+
+  \item{decreasing}{}
+}
+\description{
+\code{aggFun}
+}
+

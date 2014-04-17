@@ -1,0 +1,15 @@
+\name{textFun}
+\alias{textFun}
+\title{Transform a long function text into a formula}
+\usage{
+textFun(yvar, xvar)
+}
+\arguments{
+  \item{yvar}{}
+
+  \item{xvar}{}
+}
+\description{
+\code{textFun}
+}
+

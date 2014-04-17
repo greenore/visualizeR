@@ -1,4 +1,3 @@
-
 # Summary Statistics
 #-------------------
 calcRank <- function(Profil_Var, Firma_Var, PN_Var, data){

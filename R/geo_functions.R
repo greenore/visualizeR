@@ -121,7 +121,14 @@ plotMap <- function(shape, path_png, var, labels = T, perc = F, col_pos = 'Green
   dev.off()
 }
 
-# Kantone
+#' @title Kantone
+#' @export
+#' 
+#' @description \code{geoCoding}
+#'  
+#' @param var
+#'
+
 geoCoding <- function(var){
   var <- as.character(var)
   var[var == 'AG'] <- 'Aargau'
