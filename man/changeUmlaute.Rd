@@ -1,0 +1,17 @@
+\name{changeUmlaute}
+\alias{changeUmlaute}
+\title{Transformation of German umlaute}
+\usage{
+changeUmlaute(charVector)
+}
+\arguments{
+  \item{charVector}{A character vector of unspecified
+  length}
+}
+\description{
+\code{changeLevels} Transform all the "ae's", "oe's" and "ue's".
+}
+\examples{
+changeUmlaute(names(df))
+}
+

@@ -1,15 +1,46 @@
 # Transformation Functions
 #-------------------------
 
+#' @title Transformation of German umlaute
+#' @export
+#' 
+#' @description \code{changeLevels} Transform all the "ae's", "oe's" and "ue's".
+#'  
+#' @param charVector A character vector of unspecified length
+#' 
+#' @examples
+#' changeUmlaute(names(df))
+#'  
+
+changeUmlaute <- function(charVector){
+  
+  # Ae's
+  charVector <- gsub(iconv('Ã„', 'utf-8'), 'Ae', charVector)
+  charVector <- gsub(iconv('Ã¤', 'utf-8'), 'ae', charVector)
+  charVector <- gsub(iconv(iconv('Ãƒâ€ž', 'utf-8'), 'utf-8'), 'Ae', charVector)
+  charVector <- gsub(iconv(iconv('ÃƒÂ¤', 'utf-8'), 'utf-8'), 'ae', charVector)
+
+  # Oe's
+  charVector <- gsub(iconv('Ãœ', 'utf-8'), 'Oe', charVector)
+  charVector <- gsub(iconv('Ã¼', 'utf-8'), 'oe', charVector)
+  charVector <- gsub(iconv(iconv('ÃƒÅ', 'utf-8'), 'utf-8'), 'Oe', charVector)
+  charVector <- gsub(iconv(iconv('ÃƒÂ¼', 'utf-8'), 'utf-8'), 'oe', charVector)
+  
+  # Ue's
+  charVector <- gsub(iconv('Ã–', 'utf-8'), 'Ue', charVector)
+  charVector <- gsub(iconv('Ã¶', 'utf-8'), 'ue', charVector)
+  charVector <- gsub(iconv(iconv('Ãƒâ€', 'utf-8'), 'utf-8'), 'Ue', charVector)
+  charVector <- gsub(iconv(iconv('ÃƒÂ¶', 'utf-8'), 'utf-8'), 'ue', charVector)
+  
+  charVector
+}
+
 #' @title Transformation of factor levels
 #' @export
 #' 
-#' @description \code{changeLevels} 
+#' @description \code{changeUmlaute} 
 #'  
-#' @param data
-#' @param var
-#' @param old_level
-#' @param new_level
+#' @param charVector
 #' 
 
 changeLevels <- function(data, var, old_level, new_level){
