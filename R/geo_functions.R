@@ -138,13 +138,13 @@ geoCoding <- function(var){
   var[var == 'BS'] <- 'Basel-Stadt'
   var[var == 'BE'] <- 'Bern / Berne'
   var[var == 'FR'] <- 'Fribourg / Freiburg'
-  var[var == 'FL'] <- iconv('FÃ¼rstentum Liechtenstein', 'utf-8')
-  var[var == 'GE'] <- iconv('GenÃ¨ve', 'utf-8')
+  var[var == 'FL'] <- 'F\u00FCrstentum Liechtenstein'
+  var[var == 'GE'] <- 'Gen\u00E8ve'
   var[var == 'GL'] <- 'Glarus'
-  var[var == 'GR'] <- iconv('GraubÃ¼nden / Grigioni / Grischun', 'utf-8')
+  var[var == 'GR'] <- 'Graub\u00FCnden / Grigioni / Grischun'
   var[var == 'JU'] <- 'Jura'
   var[var == 'LU'] <- 'Luzern'
-  var[var == 'NE'] <- iconv('NeuchÃ¢tel', 'utf-8')
+  var[var == 'NE'] <- 'Neuch\u00E2tel'
   var[var == 'NW'] <- 'Nidwalden'
   var[var == 'OW'] <- 'Obwalden'
   var[var == 'SH'] <- 'Schaffhausen'
@@ -157,8 +157,8 @@ geoCoding <- function(var){
   var[var == 'VS'] <- 'Valais / Wallis'
   var[var == 'VD'] <- 'Vaud'
   var[var == 'ZG'] <- 'Zug'
-  var[var == 'ZH'] <- iconv('ZÃ¼rich', 'utf-8')
-  var[var == 'ZHL'] <- iconv('ZÃ¼rich', 'utf-8')
-  var[var == 'ZHS'] <- iconv('ZÃ¼rich', 'utf-8')
+  var[var == 'ZH'] <- 'Z\u00FCrich'
+  var[var == 'ZHL'] <- 'Z\u00FCrich'
+  var[var == 'ZHS'] <- 'Z\u00FCrich'
   var
 }
