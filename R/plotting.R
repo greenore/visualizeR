@@ -341,7 +341,7 @@ rankPlot <- function(rang, id, category, df, orderFun = 'Median', range = c(0, m
 #     legend('top', legend = d$VersName[1], box.col = 'transparent',
 #            bg = 'transparent', cex = cex * 2, bty = 'o')
     
-      title(main = d$VersName[1], cex = cex * 2)
+      title(main = d$VersName[1], cex = cex * 3)
     # Legend
     if(leg == T){
       temp <- legend('topright', legend = c(' ', ' '), xjust = 1, yjust = 1,
