@@ -63,7 +63,17 @@ reportCaptcha <- function(url, user, pass){
   result
 }
 
-# Cut down text to required id
+#' @title Cut down text to required id
+#' @export
+#' 
+#' @description \code{cutTxt} Cuts down the text to a required id
+#' 
+#' @param input Data
+#' @param identifier
+#' @param cut
+#' @param regex
+#' 
+
 cutTxt <- function(input, identifier, cut = F, regex = '[[:alnum:]]{1, }'){
   
   expr <- paste(identifier, regex, sep = '')
