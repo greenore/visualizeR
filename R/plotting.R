@@ -162,13 +162,15 @@ barPlot <- function(data){
 #' @param cex.med
 #' @param cex.minmax
 #' @param lwd.med
+#' @param method
+#' @param corral
 #' @param las
 #'
 
 beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
 										conf = T, median = T, mean = F, label = T, bee_plot = T,
                     cex = 6, cex.axis = 1.8, cex.lab = 1.4, cex.med = 2.2, 
-                    cex.minmax = 1.3, lwd.med = 3, las = 1, ...){
+                    cex.minmax = 1.3, lwd.med = 3, las = 1, method = 'center', corral = "random"){
 
 	require(beeplot)
 	
@@ -206,12 +208,11 @@ beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
 
     set.seed(123)
     bee <- beeswarm(eval(parse(text = textFun(praemie, category))), data = df, 
-                    vertical = T, method = 'center',  corral = "random",
-                    spacing = 0.7, cex = cex,
+                    vertical = T, spacing = 0.7, cex = cex,
                     pwcol = col, pch = 18,
                     xlab = '', ylab = '', main = '',
                     ylim = range, las = las, cex.axis = cex.axis,
-                    pwbg = as.character(df[, id]), ...)
+                    pwbg = as.character(df[, id]))
     
     # Label: Numbers
     if (label == T){
