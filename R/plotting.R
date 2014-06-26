@@ -202,12 +202,13 @@ beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
  
 	# Beeplot
   if (bee_plot == T){
-    
+    col <- as.character(df[, color])
+
     set.seed(123)
     bee <- beeswarm(eval(parse(text = textFun(praemie, category))), data = df, 
                     vertical = T, method = 'center',  corral = "random",
                     spacing = 0.7, cex = cex,
-                    pwcol = df[, color], pch = 18,
+                    pwcol = col, pch = 18,
                     xlab = '', ylab = '', main = '',
                     ylim = range, las = las, cex.axis = cex.axis,
                     pwbg = as.character(df[, id]))
