@@ -212,7 +212,8 @@ beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
                     pwcol = col, pch = 18,
                     xlab = '', ylab = '', main = '',
                     ylim = range, las = las, cex.axis = cex.axis,
-                    pwbg = as.character(df[, id]))
+                    pwbg = as.character(df[, id]), 
+                    method = method, corral = corral)
     
     # Label: Numbers
     if (label == T){
