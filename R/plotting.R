@@ -168,7 +168,7 @@ barPlot <- function(data){
 beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
 										conf = T, median = T, mean = F, label = T, bee_plot = T,
                     cex = 6, cex.axis = 1.8, cex.lab = 1.4, cex.med = 2.2, 
-                    cex.minmax = 1.3, lwd.med = 3, las = 1){
+                    cex.minmax = 1.3, lwd.med = 3, las = 1, ...){
 
 	require(beeplot)
 	
@@ -211,7 +211,7 @@ beePlot <- function(id, category, praemie, rank, data, color, range = c(0, max),
                     pwcol = col, pch = 18,
                     xlab = '', ylab = '', main = '',
                     ylim = range, las = las, cex.axis = cex.axis,
-                    pwbg = as.character(df[, id]))
+                    pwbg = as.character(df[, id]), ...)
     
     # Label: Numbers
     if (label == T){
