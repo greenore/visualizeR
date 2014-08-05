@@ -32,7 +32,7 @@ changeUmlaute <- function(charVector){
 #' @title Transformation of factor levels
 #' @export
 #' 
-#' @description \code{changeUmlaute} 
+#' @description \code{changeLevels} 
 #'  
 #' @param charVector
 #' 
