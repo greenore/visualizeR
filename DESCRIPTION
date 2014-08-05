@@ -13,7 +13,6 @@ Depends:
 Imports:
     utils,
     methods,
-    biOps,
     EBImage
 Suggests:
     plotrix,
