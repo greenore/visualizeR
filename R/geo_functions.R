@@ -162,3 +162,44 @@ geoCoding <- function(var){
   var[var == 'ZHS'] <- 'Z\u00FCrich'
   var
 }
+
+#' @title Kantone2
+#' @export
+#'
+#' @description \code{geoCoding2}
+#'
+#' @param var
+#'
+geoCoding2 <- function(var){
+var <- as.character(var)
+var[var == 'AG'] <- '19'
+var[var == 'AI'] <- '16'
+var[var == 'AR'] <- '15'
+var[var == 'BL'] <- '13'
+var[var == 'BS'] <- '12'
+var[var == 'BE'] <- '2'
+var[var == 'FR'] <- '10'
+var[var == 'FL'] <- '27'
+var[var == 'GE'] <- '25'
+var[var == 'GL'] <- '8'
+var[var == 'GR'] <- '18'
+var[var == 'JU'] <- '26'
+var[var == 'LU'] <- '3'
+var[var == 'NE'] <- '24'
+var[var == 'NW'] <- '7'
+var[var == 'OW'] <- '6'
+var[var == 'SH'] <- '14'
+var[var == 'SZ'] <- '5'
+var[var == 'SO'] <- '11'
+var[var == 'SG'] <- '17'
+var[var == 'TG'] <- '20'
+var[var == 'TI'] <- '21'
+var[var == 'UR'] <- '4'
+var[var == 'VS'] <- '23'
+var[var == 'VD'] <- '22'
+var[var == 'ZG'] <- '9'
+var[var == 'ZH'] <- '1'
+var[var == 'ZHL'] <- '1'
+var[var == 'ZHS'] <- '1'
+as.numeric(var)
+}
