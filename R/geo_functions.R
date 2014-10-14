@@ -170,6 +170,7 @@ geoCoding <- function(var){
 #'
 #' @param var
 #'
+
 geoCoding2 <- function(var){
 var <- as.character(var)
 var[var == 'AG'] <- '19'
