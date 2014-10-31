@@ -26,6 +26,30 @@ changeUmlaute <- function(charVector){
   charVector <- gsub('\u00DC', 'Ue', charVector)
   charVector <- gsub('\u00FC', 'ue', charVector)
   
+  # E-acute
+  charVector <- gsub('\u00C9', 'E', charVector)
+  charVector <- gsub('\u00E9', 'e', charVector)
+  
+  # E-grave
+  charVector <- gsub('\u00c8', 'E', charVector)
+  charVector <- gsub('\u00e8', 'e', charVector)
+
+  # E-circumflex
+  charVector <- gsub('\u00ca', 'E', charVector)
+  charVector <- gsub('\u00ea', 'e', charVector)
+  
+  # A-circumflex
+  charVector <- gsub('\u00c2', 'A', charVector)
+  charVector <- gsub('\u00e2', 'a', charVector)
+  
+  # I-circumflex
+  charVector <- gsub('\u00ce', 'I', charVector)
+  charVector <- gsub('\u00ee', 'i', charVector)
+  
+  # C-cedilla
+  charVector <- gsub('\u00c7', 'C', charVector)
+  charVector <- gsub('\u00e7', 'c', charVector)
+  
   charVector
 }
 
