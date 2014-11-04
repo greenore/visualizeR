@@ -1,5 +1,93 @@
 # Summary Statistics
 #-------------------
+#' @title Calculate a rank
+#' @export
+#' 
+#' @description \code{rankFun} 
+#'  
+#' @param praemie
+#' @param id
+#' @param category
+#' @param data
+#'
+
+rankFun <- function(praemie, id, category, data){
+  
+  df <- data[!is.na(data[, praemie]), ]
+  df[, id] <- as.factor(df[, id])
+  
+  # Calculate Rank
+  rank <- calcRank(id, category, praemie, df)
+  names(rank)[4] <- paste('Rang_', praemie, sep = '')
+  
+  rank <- rank[, !names(rank) %in% praemie]
+  rank <- rank[order(rank[, id], rank[, names(rank)[3]]), ]
+  return(rank)
+}
+
+#' @title Data cleanup
+#' @export
+#' 
+#' @description \code{cleanFun} 
+#'  
+#' @param praemie
+#' @param id
+#' @param category
+#' @param data
+#'
+
+cleanFun <- function(praemie, id, category, data){
+  df <- data[complete.cases(data[, praemie]), ]
+  df[, category] <- as.factor(df[, category])
+  
+  df<- droplevels(df)
+  
+  # Drop Profiles with less than ... Offers
+  num <- aggregate(df[, category], list(df[, id]), FUN = 'length')
+  drop <- ifelse(num$x < (length(levels(df[, category])) - 2), as.character(num$Group.1), NA)
+  df <- df[!df[, id] %in% drop, ]
+  return(df)
+}
+
+#' @title Aggregating
+#' @export
+#' 
+#' @description \code{aggFun} 
+#'  
+#' @param praemie
+#' @param category
+#' @param data
+#' @param decreasing
+#'
+
+aggFun <- function(praemie, category, data, decreasing = F){
+  df <- data[!is.na(data[, praemie]), ]
+  
+  median <- aggregate(df[, praemie], list(df[, category]), FUN = 'median')
+  mean <- aggregate(df[, praemie], list(df[, category]), FUN = 'mean')
+  sd <- aggregate(df[, praemie], list(df[, category]), FUN = 'sd')
+  n <- aggregate(df[, praemie], list(df[, category]), FUN = 'length')
+  min <- aggregate(df[, praemie], list(df[, category]), FUN = 'min')
+  max <- aggregate(df[, praemie], list(df[, category]), FUN = 'max')
+  
+  # Rename
+  names(median) <- c(category, 'Median')
+  names(mean) <- c(category, 'Mean')
+  names(sd) <- c(category, 'SDev')
+  names(n) <- c(category, 'N')
+  names(min) <- c(category, 'Min')
+  names(max) <- c(category, 'Max')
+  
+  # Combine
+  agg <- merge(merge(merge(merge(merge(median, mean), sd), min), max), n)
+  
+  # Order
+  agg <- agg[order(agg[, category], decreasing = decreasing), ]
+  rownames(agg) <- NULL
+  agg
+}
+
+#' @export
 calcRank <- function(Profil_Var, Firma_Var, PN_Var, data){
   d <- data
   var <- c(Profil_Var, Firma_Var, PN_Var)
@@ -22,6 +110,7 @@ calcRank <- function(Profil_Var, Firma_Var, PN_Var, data){
   return(x)
 }
 
+#' @export
 # Frequency Table
 freqTable <- function(data, xvar, yvar, n){
   x <- table(data[, yvar], data[, xvar])
@@ -29,6 +118,7 @@ freqTable <- function(data, xvar, yvar, n){
   x
 }
 
+#' @export
 # Recalculate Stratum Frequencies for Cantons
 stratumSize <- function(data, var, size){
   table <- table(data[, var])/sum(table(data[, var])) * 100
@@ -41,6 +131,7 @@ stratumSize <- function(data, var, size){
   t  
 }
 
+#' @export
 # NA DETECTION of an overall dataframe
 isNa <- function(data, var.number = 1:length(data)){
   v <- data.frame(cbind(names(data), var.number))
