@@ -10,11 +10,11 @@ necessary to install this from CRAN, i.e., run the following commands:
 
 ```
 install.packages("devtools")
-devtools::install_github(repo="greenore/basleR")
+devtools::install_github(repo="greenore/visualizeR")
 ```
 
 To get started using `visualizeR` I'm going to write an introduction vignette. This 
-is going to be located in `/doc/basleR-basics.html` once `basleR` is installed or run
+is going to be located in `/doc/visualizeR-basics.html` once `visualizeR` is installed or run
 
 ```
 vignette('visualizeR-basics')

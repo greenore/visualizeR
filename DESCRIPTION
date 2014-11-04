@@ -1,25 +1,18 @@
 Package: visualizeR
-Type: visualizeR
-Title: visualizeR: An internal package with functions for pricing at Baloise
-Version: 0.1
-Date: 2014-02-26
+Type: Package
+Title: visualizeR: An open source package with functions to visualize data.
+Version: 0.2
+Date: 2014-05-23
 Author: Tim Hagmann <tim.hagmann@baloise.ch>
 Maintainer: Tim Hagmann <tim.hagmann@baloise.ch>
-Description: A consistent tool to facilitate pricing analysis at Baloise.
-    This includes functions to handle data, system commands, webscraping,
-    visualisations etc.
+Description: A consistent tool to facilitate pricing visualizations.
 Depends:
     R (>= 3.0.3)
 Imports:
-    utils,
-    methods,
-    EBImage
-Suggests:
-    plotrix,
-    beeswarm,
     maptools,
+    sp,
     RColorBrewer,
     classInt,
-    devEMF
+    plotrix
 Roxygen: list(wrap = FALSE)
 License: file LICENSE

@@ -144,8 +144,6 @@ barPlot <- function(data){
   }
 }
 
-
-
 #' @title Create a rank plot
 #' @export
 #' 

@@ -54,7 +54,7 @@ plotMap <- function(shape, path_png, var, labels = T, perc = F, col_pos = 'Green
 										numInterval = 10, numColLength = 4){
   
 	# Load libraries
-	require(maptools); require(RColorBrewer); require(classInt); require(devEMF)
+	require(maptools); require(RColorBrewer); require(classInt)
 	
 	# For Numeric variables
 	if(is.numeric(shape[[var]]) == T){
