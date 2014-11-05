@@ -5,8 +5,7 @@ This is a set of helper functions to facilitate price analysis trough visualizat
 
 ### Install 
 
-To install visualizeR from Github requires the devtools package. That means it is first
-necessary to install this from CRAN, i.e., run the following commands:
+To install visualizeR from Github requires the devtools package from CRAN. That means running the following commands:
 
 ```
 install.packages("devtools")
