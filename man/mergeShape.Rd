@@ -18,7 +18,4 @@ mergeShape(df, path_shape, df_ID, shape_ID)
 \code{mergeShape} combines a shape file with a designated dataframe
 according to an ID variable.
 }
-\examples{
-prepGeo(my.df, '/shape/schweiz.shp', 'plz', 'PLZ')
-}
 

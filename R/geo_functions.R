@@ -11,9 +11,6 @@
 #' @param path_shape Path to the shape file. 
 #' @param shape_ID Unique ID of the shape file for the join.
 #' @param df_ID Unique ID of the data file for the join.
-#' 
-#' @examples
-#' prepGeo(my.df, '/shape/schweiz.shp', 'plz', 'PLZ')
 
 mergeShape <- function(df, path_shape, df_ID, shape_ID){
 	

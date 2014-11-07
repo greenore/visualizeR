@@ -3,7 +3,7 @@
 \alias{balCol}
 \title{Baloise Colours}
 \usage{
-balCol(colour)
+balCol(col, alpha = 255)
 }
 \description{
 \code{balCol} returns the 6 different official colour in use at Baloise.
