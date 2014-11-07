@@ -3,26 +3,43 @@
 #' @title Calculate a rank
 #' @export
 #' 
-#' @description \code{rankFun} 
+#' @description \code{calcRank} 
 #'  
-#' @param praemie
 #' @param id
-#' @param category
+#' @param num_var
+#' @param cat_var
 #' @param data
+#' @param decreasing
 #'
 
-rankFun <- function(praemie, id, category, data){
+calcRank <- function(id, num_var, cat_var, data, decreasing=FALSE){
+  # Setup
+  id_var <- unique(data[, id])
+  var_name <- paste0("Rank_", num_var)
+  nam_vec <- c(id, cat_var, num_var)
+  df.rank <- createDf(nam_vec)
   
-  df <- data[!is.na(data[, praemie]), ]
-  df[, id] <- as.factor(df[, id])
+  # Calculate rank for every profile
+  for(i in seq_along(id_var)){
+    df.tmp <- data[data[, id] %in% i, nam_vec]
+    df.tmp[, var_name] <- rank(as.numeric(df.tmp[, num_var]))
+    if(decreasing){df.tmp[, var_name] <- rank(as.numeric(df.tmp[, num_var]) * -1)}
+    df.rank <- rbind(df.rank, df.tmp)
+  }
   
-  # Calculate Rank
-  rank <- calcRank(id, category, praemie, df)
-  names(rank)[4] <- paste('Rang_', praemie, sep = '')
+  # Transform rank to integer
+  df.rank[, var_name] <- as.integer(df.rank[, var_name])
   
-  rank <- rank[, !names(rank) %in% praemie]
-  rank <- rank[order(rank[, id], rank[, names(rank)[3]]), ]
-  return(rank)
+  # Remove num_var
+  df.rank <- df.rank[, !names(df.rank) %in% num_var]
+  
+  df.rank
+}
+
+#' @export
+createDf <- function(nam_vec){
+  df <- data.frame(matrix(vector(), 0, length(nam_vec), dimnames=list(c(), nam_vec)))
+  df
 }
 
 #' @title Data cleanup
@@ -85,29 +102,6 @@ aggFun <- function(praemie, category, data, decreasing = F){
   agg <- agg[order(agg[, category], decreasing = decreasing), ]
   rownames(agg) <- NULL
   agg
-}
-
-#' @export
-calcRank <- function(Profil_Var, Firma_Var, PN_Var, data){
-  d <- data
-  var <- c(Profil_Var, Firma_Var, PN_Var)
-  d[, Profil_Var] <- as.factor(d[, Profil_Var])
-  lev <- levels(d[, Profil_Var])
-  
-  x <- d[d[, Profil_Var] == lev[1], var]
-  x <- x[order(x[, PN_Var]), var[1:3]]
-  Rang <- c(1:nrow(x[complete.cases(x[, PN_Var]), ]), rep(NA, nrow(x[!complete.cases(x[, PN_Var]), ])))
-  x$Rang <- Rang[(length(Rang) - nrow(x) + 1):length(Rang)]
-  
-  for(i in lev[2:length(lev)]){
-    y <- d[d[, Profil_Var] == i, var]
-    y <- y[order(y[, PN_Var]), var[1:3]]
-    Rang <- c(1:nrow(y[complete.cases(y[, PN_Var]), ]), rep(NA, nrow(y[!complete.cases(y[, PN_Var]), ])))
-    y$Rang <- Rang[(length(Rang) - nrow(y) + 1):length(Rang)]
-    
-    x <- rbind(x, y)
-  }
-  return(x)
 }
 
 #' @export
