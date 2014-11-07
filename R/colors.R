@@ -35,42 +35,55 @@ balCol <- function (col, alpha=255){
 #' @description \code{colFun} Add a specific color according to the rank and the
 #' category, i.e., Basler are blue etc. 
 #'  
-#' @param rang
-#' @param id
-#' @param category
-#' @param rank_col
-#' @param top
-#' @param flop
-#' @param nam_blue
-#' @param nam_orange
-#' @param col_neutral
-#'
+#' @param rank variable with the indiviudual rank values
+#' @param id ID variable for the individual data points
+#' @param category variable that defines the bins
+#' @param rank_col True or False variable to set if the rank colors are shown
+#' @param top Variable to define how many profiles are in the top section 
+#' @param flop Variable to define how many profiles are in the flop section
+#' @param nam_1 Variable to color an individual category
+#' @param nam_2 Variable to color an individual category
+#' @param col_1 color for category 1
+#' @param col_2 color for category 2
+#' @param col_red red color
+#' @param col_green green color
+#' @param col_neutral neutral color
+#' @param col_NA color for the missing variables
 
-colFun <- function(rang, id, category, data, rank_col = T, top = c(1), flop = c(1),
-                   nam_blue = 'Basler', nam_orange = 'TCS',
-                   col_neutral = rgb(0, 0, 0, alpha = 180, maxColorValue = 255)){
+colRank <- function(rank, id, category, data, rank_col=TRUE, top=c(1),
+                    flop=c(1), nam_1=NULL, nam_2=NULL,
+                    col_1=NULL, col_2=NULL,
+                    col_red=rgb(139, 0, 0, alpha=255, maxColorValue=255),
+                    col_green=rgb(0, 100, 0, alpha=255, maxColorValue=255),
+                    col_neutral=rgb(0, 0, 0, alpha=255, maxColorValue=255),
+                    col_NA="black"){
   
   # Color Name
-  col_name <- gsub('Rang_', '', rang)
-  col_name <- paste('color_', col_name, sep = '')
+  col_name <- gsub("Rang_", "", rank)
+  col_name <- paste0("color_", col_name)
   
   # seperate df
-  df <- data[!is.na(data[, rang]), ]
+  df <- data[!is.na(data[, rank]), ]
   
-  # Blue color for Baloise
-  # ... (alpha = 180 is a good value)
+  # Set principal color to neutral
+  df[, col_name] <- col_neutral
   
-  df[, col_name] <- ifelse(df[, category] %in% nam_blue, balCol('hbl'), col_neutral)
-  df[, col_name] <- ifelse(df[, category] %in% nam_orange, balCol('ora'), df[, col_name])
+  if(exists("nam_1")){
+    df[, col_name] <- ifelse(df[, category] %in% nam_1, col_1, df[, col_name])
+  }
   
-  if (rank_col == T){
+  if(exists("nam_2")){
+    df[, col_name] <- ifelse(df[, category] %in% nam_2, col_2, df[, col_name])
+  }
+    
+  if(rank_col){
     # Green color for top profiles
     
-    ifelse(df[, rang] %in% top, 1, 0)
-    df[, col_name] <- ifelse(df[, rang] %in% top, rgb(0, 100, 0, alpha = 180, maxColorValue = 255), df[, col_name])
+    ifelse(df[, rank] %in% top, 1, 0)
+    df[, col_name] <- ifelse(df[, rank] %in% top, col_green, df[, col_name])
     
     # Red color for flop profiles
-    num <- aggregate(df[, category], list(df[, id]), FUN = 'length')
+    num <- aggregate(df[, category], list(df[, id]), FUN = "length")
     
     n4 <- ifelse(num$x == (length(unique(df[, category])) - 3), as.character(num$Group.1), NA)
     n5 <- ifelse(num$x == (length(unique(df[, category])) - 2), as.character(num$Group.1), NA)
@@ -80,7 +93,8 @@ colFun <- function(rang, id, category, data, rank_col = T, top = c(1), flop = c(
     n41 <- sort((length(unique(df[, category])) - 3) - (flop - 1))
     n51 <- sort((length(unique(df[, category])) - 2) - (flop - 1))
     n61 <- sort((length(unique(df[, category])) - 1) - (flop - 1))
-    n71 <- sort((length(unique(df[, category])) ) - (flop - 1))
+    n71 <- sort((length(unique(df[, category]))) - (flop -
+                                                      1))
     
     df[, col_name] <- ifelse(df[, id] %in% n4 & df[, rang] %in% n41, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
     df[, col_name] <- ifelse(df[, id] %in% n5 & df[, rang] %in% n51, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
@@ -89,9 +103,7 @@ colFun <- function(rang, id, category, data, rank_col = T, top = c(1), flop = c(
   }
   
   df <- merge(data, df[, c(id, category, col_name)], by = c(id, category), all.x = T)
-  df[, col_name] <- ifelse(is.na(df[, rang]), 'black', df[, col_name])
-  
+  df[, col_name] <- ifelse(is.na(df[, rank]), col_NA, df[, col_name])
   df
-  
 }
 
