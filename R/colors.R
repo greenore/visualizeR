@@ -18,15 +18,15 @@
 #' @examples
 #' balCol("dbl")
 
-balCol <- function(colour){
-	df.col <- NULL
-	df.col$dbl <- rgb(0, 51/255, 153/255)
-	df.col$hbl <- rgb(0, 165/255, 213/255)
-	df.col$vio <- rgb(183/255, 0, 122/255)
-	df.col$rot <- rgb(230/255, 67/255, 102/255)
-	df.col$ora <- rgb(246/255, 168/255, 0)
-	df.col$gel <- rgb(255/255, 220/255, 68/255)
-	as.character(df.col[colour])
+balCol <- function (col, alpha=255){
+  df.col <- list()
+  df.col$dbl <- rgb(0, 51, 153, alpha=alpha, maxColorValue=255)
+  df.col$hbl <- rgb(0, 165, 213, alpha=alpha, maxColorValue=255)
+  df.col$vio <- rgb(183, 0, 122, alpha=alpha, maxColorValue=255)
+  df.col$rot <- rgb(230, 67, 102, alpha=alpha, maxColorValue=255)
+  df.col$ora <- rgb(246, 168, 0, alpha=alpha, maxColorValue=255)
+  df.col$gel <- rgb(255, 220, 68, alpha=alpha, maxColorValue=255)
+  as.character(df.col[col])
 }
 
 #' @title Add Color to a dataframe
