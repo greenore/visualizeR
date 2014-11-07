@@ -3,9 +3,9 @@
 \alias{colRank}
 \title{Add Color to a dataframe}
 \usage{
-colRank(rank, id, category, data, rank_col = TRUE, top = c(1),
-  flop = c(1), nam_1 = NULL, nam_2 = NULL, col_1 = NULL, col_2 = NULL,
-  col_red = rgb(139, 0, 0, alpha = 255, maxColorValue = 255),
+colRank(rank, id, category, data, var_name = "color", rank_col = TRUE,
+  top = c(1), flop = c(1), nam_1 = NULL, nam_2 = NULL, col_1 = NULL,
+  col_2 = NULL, col_red = rgb(139, 0, 0, alpha = 255, maxColorValue = 255),
   col_green = rgb(0, 100, 0, alpha = 255, maxColorValue = 255),
   col_neutral = rgb(0, 0, 0, alpha = 255, maxColorValue = 255),
   col_NA = "black")

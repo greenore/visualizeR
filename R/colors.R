@@ -50,7 +50,7 @@ balCol <- function (col, alpha=255){
 #' @param col_neutral neutral color
 #' @param col_NA color for the missing variables
 
-colRank <- function(rank, id, category, data,
+colRank <- function(rank, id, category, data, var_name="color",
                     rank_col=TRUE, top=c(1), flop=c(1), nam_1=NULL, nam_2=NULL,
                     col_1=NULL, col_2=NULL,
                     col_red=rgb(139, 0, 0, alpha=255, maxColorValue=255),
@@ -58,29 +58,26 @@ colRank <- function(rank, id, category, data,
                     col_neutral=rgb(0, 0, 0, alpha=255, maxColorValue=255),
                     col_NA="black"){
   
-  # Color Name
-  col_name <- gsub("Rang_", "", rank)
-  col_name <- paste0("color_", col_name)
   
   # seperate df
   df <- data[!is.na(data[, rank]), ]
   
   # Set principal color to neutral
-  df[, col_name] <- col_neutral
+  df[, var_name] <- col_neutral
   
   if(exists("nam_1")){
-    df[, col_name] <- ifelse(df[, category] %in% nam_1, col_1, df[, col_name])
+    df[, var_name] <- ifelse(df[, category] %in% nam_1, col_1, df[, var_name])
   }
   
   if(exists("nam_2")){
-    df[, col_name] <- ifelse(df[, category] %in% nam_2, col_2, df[, col_name])
+    df[, var_name] <- ifelse(df[, category] %in% nam_2, col_2, df[, var_name])
   }
     
   if(rank_col){
     # Green color for top profiles
     
     ifelse(df[, rank] %in% top, 1, 0)
-    df[, col_name] <- ifelse(df[, rank] %in% top, col_green, df[, col_name])
+    df[, var_name] <- ifelse(df[, rank] %in% top, col_green, df[, var_name])
     
     # Red color for flop profiles
     num <- aggregate(df[, category], list(df[, id]), FUN = "length")
@@ -96,14 +93,14 @@ colRank <- function(rank, id, category, data,
     n71 <- sort((length(unique(df[, category]))) - (flop -
                                                       1))
     
-    df[, col_name] <- ifelse(df[, id] %in% n4 & df[, rank] %in% n41, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
-    df[, col_name] <- ifelse(df[, id] %in% n5 & df[, rank] %in% n51, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
-    df[, col_name] <- ifelse(df[, id] %in% n6 & df[, rank] %in% n61, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
-    df[, col_name] <- ifelse(df[, id] %in% n7 & df[, rank] %in% n71, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])  
+    df[, var_name] <- ifelse(df[, id] %in% n4 & df[, rank] %in% n41, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, var_name])
+    df[, var_name] <- ifelse(df[, id] %in% n5 & df[, rank] %in% n51, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, var_name])
+    df[, var_name] <- ifelse(df[, id] %in% n6 & df[, rank] %in% n61, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, var_name])
+    df[, var_name] <- ifelse(df[, id] %in% n7 & df[, rank] %in% n71, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, var_name])  
   }
   
-  df <- merge(data, df[, c(id, category, col_name)], by = c(id, category), all.x = T)
-  df[, col_name] <- ifelse(is.na(df[, rank]), col_NA, df[, col_name])
+  df <- merge(data, df[, c(id, category, var_name)], by = c(id, category), all.x = T)
+  df[, var_name] <- ifelse(is.na(df[, rank]), col_NA, df[, var_name])
   df
 }
 
