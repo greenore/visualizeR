@@ -96,10 +96,10 @@ colRank <- function(rank, id, category, data, rank_col=TRUE, top=c(1),
     n71 <- sort((length(unique(df[, category]))) - (flop -
                                                       1))
     
-    df[, col_name] <- ifelse(df[, id] %in% n4 & df[, rang] %in% n41, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
-    df[, col_name] <- ifelse(df[, id] %in% n5 & df[, rang] %in% n51, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
-    df[, col_name] <- ifelse(df[, id] %in% n6 & df[, rang] %in% n61, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
-    df[, col_name] <- ifelse(df[, id] %in% n7 & df[, rang] %in% n71, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])  
+    df[, col_name] <- ifelse(df[, id] %in% n4 & df[, rank] %in% n41, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
+    df[, col_name] <- ifelse(df[, id] %in% n5 & df[, rank] %in% n51, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
+    df[, col_name] <- ifelse(df[, id] %in% n6 & df[, rank] %in% n61, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])
+    df[, col_name] <- ifelse(df[, id] %in% n7 & df[, rank] %in% n71, rgb(139, 0, 0, alpha = 180, maxColorValue = 255), df[, col_name])  
   }
   
   df <- merge(data, df[, c(id, category, col_name)], by = c(id, category), all.x = T)
