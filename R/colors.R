@@ -50,8 +50,8 @@ balCol <- function (col, alpha=255){
 #' @param col_neutral neutral color
 #' @param col_NA color for the missing variables
 
-colRank <- function(rank, id, category, data, rank_col=TRUE, top=c(1),
-                    flop=c(1), nam_1=NULL, nam_2=NULL,
+colRank <- function(rank, id, category, data,
+                    rank_col=TRUE, top=c(1), flop=c(1), nam_1=NULL, nam_2=NULL,
                     col_1=NULL, col_2=NULL,
                     col_red=rgb(139, 0, 0, alpha=255, maxColorValue=255),
                     col_green=rgb(0, 100, 0, alpha=255, maxColorValue=255),
