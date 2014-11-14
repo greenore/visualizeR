@@ -47,21 +47,21 @@ createDf <- function(nam_vec){
 #' 
 #' @description \code{cleanFun} 
 #'  
-#' @param praemie
 #' @param id
-#' @param category
+#' @param num_var
+#' @param cat_var
 #' @param data
 #'
 
-cleanFun <- function(praemie, id, category, data){
-  df <- data[complete.cases(data[, praemie]), ]
-  df[, category] <- as.factor(df[, category])
+cleanFun <- function(id, num_var, cat_var, data){
+  df <- data[complete.cases(data[, num_var]), ]
+  df[, cat_var] <- as.factor(df[, cat_var])
   
   df<- droplevels(df)
   
   # Drop Profiles with less than ... Offers
-  num <- aggregate(df[, category], list(df[, id]), FUN = 'length')
-  drop <- ifelse(num$x < (length(levels(df[, category])) - 2), as.character(num$Group.1), NA)
+  num <- aggregate(df[, cat_var], list(df[, id]), FUN = 'length')
+  drop <- ifelse(num$x < (length(levels(df[, cat_var])) - 2), as.character(num$Group.1), NA)
   df <- df[!df[, id] %in% drop, ]
   return(df)
 }
