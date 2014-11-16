@@ -10,9 +10,10 @@
 #' @param cat_var
 #' @param data
 #' @param decreasing
+#' @param ties.method
 #'
 
-calcRank <- function(id, num_var, cat_var, data, decreasing=FALSE){
+calcRank <- function(id, num_var, cat_var, data, decreasing=FALSE, ties.method="random"){
   # Setup
   id_var <- unique(data[, id])
   var_name <- paste0("Rank_", num_var)
@@ -20,10 +21,10 @@ calcRank <- function(id, num_var, cat_var, data, decreasing=FALSE){
   df.rank <- createDf(nam_vec)
   
   # Calculate rank for every profile
-  for(i in seq_along(id_var)){
+  for(i in id_var){
     df.tmp <- data[data[, id] %in% i, nam_vec]
-    df.tmp[, var_name] <- rank(as.numeric(df.tmp[, num_var]))
-    if(decreasing){df.tmp[, var_name] <- rank(as.numeric(df.tmp[, num_var]) * -1)}
+    df.tmp[, var_name] <- rank(as.numeric(df.tmp[, num_var]), ties.method=ties.method)
+    if(decreasing){df.tmp[, var_name] <- rank(as.numeric(df.tmp[, num_var]) * -1, ties.method=ties.method)}
     df.rank <- rbind(df.rank, df.tmp)
   }
   
