@@ -5,3 +5,4 @@ basleR.Rproj
 \.RData$
 \.Rhistory$
 captcha.R
+^packrat/

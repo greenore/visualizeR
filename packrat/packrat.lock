@@ -1,0 +1,40 @@
+PackratFormat: 1.4
+PackratVersion: 0.4.0.12
+RVersion: 3.1.2
+Repos: CRAN=http://stat.ethz.ch/CRAN/,
+    CRANextra=http://www.stats.ox.ac.uk/pub/RWin
+
+Package: classInt
+Source: CRAN
+Version: 0.1-21
+Requires: e1071
+
+Package: e1071
+Source: CRAN
+Version: 1.6-4
+
+Package: maptools
+Source: CRAN
+Version: 0.8-30
+Requires: sp
+
+Package: packrat
+Source: github
+Version: 0.4.0.12
+GithubRepo: packrat
+GithubUsername: rstudio
+GithubRef: v0.98.1000
+GithubSha1: e738f79a22521c57fad67a1679302385973cd958
+Hash: e738f79a22521c57fad67a1679302385973cd958
+
+Package: plotrix
+Source: CRAN
+Version: 3.5-10
+
+Package: RColorBrewer
+Source: CRAN
+Version: 1.1-2
+
+Package: sp
+Source: CRAN
+Version: 1.0-16
